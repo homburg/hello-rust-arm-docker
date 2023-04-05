@@ -7,7 +7,7 @@ struct Point {
 }
 
 fn main() {
-    let point = Point { x: 1, y: 2 };
+    let point = Point { x: 2, y: 3 };
 
     // Convert the Point to a JSON string.
     let serialized = serde_json::to_string(&point).unwrap();
