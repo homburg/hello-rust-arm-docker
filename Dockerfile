@@ -1,5 +1,5 @@
 FROM lukemathwalker/cargo-chef:latest-rust-1 AS chef
-WORKDIR app
+WORKDIR /app
 
 FROM chef AS planner
 COPY . .
@@ -11,10 +11,11 @@ COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 # Build application
 COPY . .
-RUN cargo build --release --bin app
+RUN cargo build --release
+# RUN cargo build --release# --bin app
 
 # We do not need the Rust toolchain to run the binary!
 FROM debian:buster-slim AS runtime
-WORKDIR app
-COPY --from=builder /app/target/release/app /usr/local/bin
-ENTRYPOINT ["/usr/local/bin/app"]
+WORKDIR /app
+COPY --from=builder /app/target/release/hello-rust-arm-docker /usr/local/bin
+ENTRYPOINT ["/usr/local/bin/hello-rust-arm-docker"]
