@@ -1,1 +1,8 @@
 .github
+justfile
+
+target
+Dockerfile
+.dockerignore
+.git
+.gitignore
