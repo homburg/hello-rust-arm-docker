@@ -32,5 +32,5 @@ RUN PKG_CONFIG_SYSROOT_DIR=/ \
 # We do not need the Rust toolchain to run the binary!
 FROM debian:buster-slim AS runtime
 WORKDIR /app
-COPY --from=builder /app/target/release/app /usr/local/bin/
+COPY --from=builder /app/target/aarch64-unknown-linux-gnu/release/app /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/app"]
